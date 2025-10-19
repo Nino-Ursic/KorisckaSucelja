@@ -18,5 +18,8 @@ Prikaz turistima svih oglašavanih apartmana koji se mogu filtrirati po raznim z
 
 Do ideje smo došli iz osobnih iskustava sa sličnim stranicama
 
+### Video pitch
+
+[Apartment Finder video](https://app.animaker.com/video/9CDDMP0APZUH3C9M)
 
 
