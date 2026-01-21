@@ -24,23 +24,20 @@ export function AccommodationCard({
 }: AccommodationCardProps) {
   return (
     <Link href={`/accommodations/${id}`}>
-      <div className="group h-full bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1">
-        <div className="relative h-52 bg-gray-800">
-          <div className="absolute inset-0 overflow-hidden">
-            {imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={name}
-                className="w-full h-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-                <span className="text-5xl opacity-50 group-hover:opacity-75 transition-opacity">
-                  {VACATION_TYPE_ICONS[vacationType]}
-                </span>
-              </div>
-            )}
-          </div>
+      <div className="group h-full bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 isolate">
+        <div className="relative h-52 overflow-hidden">
+          {imageUrl ? (
+            <div 
+              className="absolute -inset-2 bg-cover bg-center transition-transform duration-500 will-change-transform group-hover:scale-110"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+              <span className="text-5xl opacity-50 group-hover:opacity-75 transition-opacity">
+                {VACATION_TYPE_ICONS[vacationType]}
+              </span>
+            </div>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent pointer-events-none" />
           <div className="absolute top-3 left-3 z-10">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-900/80 backdrop-blur-sm text-gray-300 text-xs font-medium rounded-full border border-gray-700">
@@ -54,7 +51,7 @@ export function AccommodationCard({
           </div>
         </div>
 
-        <div className="p-5">
+        <div className="relative z-10 p-5 bg-gray-900">
           <h3 className="font-semibold text-lg text-white line-clamp-1 group-hover:text-amber-500 transition-colors">
             {name}
           </h3>
