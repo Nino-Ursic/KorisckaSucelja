@@ -8,20 +8,19 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'ghost', size = 'md', isLoading, children, disabled, ...props }, ref) => {
-const baseStyles =
-  'inline-flex items-center justify-center font-medium rounded-lg transition-colors ' +
-  'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-950 ' +
-  'disabled:opacity-50 disabled:cursor-not-allowed';
+  ({ variant = 'primary', size = 'md', isLoading, children, disabled, className, ...props }, ref) => {
+    const baseStyles =
+      'inline-flex items-center justify-center font-medium rounded-lg transition-colors ' +
+      'focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-950 ' +
+      'disabled:opacity-50 disabled:cursor-not-allowed';
     
     const variants = {
-  primary: 'bg-amber-500 text-gray-950 hover:bg-amber-600',
-  secondary: 'bg-gray-800 text-white hover:bg-gray-700',
-  outline: 'border border-gray-700 text-gray-300 hover:bg-gray-800',
-  ghost: 'text-gray-300 hover:bg-gray-800',
-  danger: 'bg-red-600 text-white hover:bg-red-700',
-};
-
+      primary: 'bg-amber-500 text-gray-950 hover:bg-amber-600 font-semibold',
+      secondary: 'bg-gray-800 text-white hover:bg-gray-700',
+      outline: 'border-2 border-gray-700 text-gray-300 hover:bg-gray-800 hover:border-gray-600 bg-transparent',
+      ghost: 'text-gray-300 hover:bg-gray-800',
+      danger: 'bg-red-600 text-white hover:bg-red-700',
+    };
 
     const sizes = {
       sm: 'px-3 py-1.5 text-sm',

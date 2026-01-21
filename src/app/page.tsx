@@ -49,7 +49,6 @@ export default async function HomePage() {
 
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               {siteContent.heroTitle}
             </h1>
@@ -58,24 +57,18 @@ export default async function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/accommodations">
-                <Button 
-                  size="lg" 
-                  className="bg-amber-500 hover:bg-amber-600 text-gray-950 font-semibold px-8"
-                >
+                <Button size="lg" variant="primary" className="px-8">
                   Explore Properties
                 </Button>
               </Link>
               <Link href="/auth/signup">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:border-gray-600"
-                >
+                <Button size="lg" variant="outline">
                   List Your Property
                 </Button>
               </Link>
             </div>
- <div className="flex gap-12 mt-16 pt-16 border-t border-gray-800">
+
+            <div className="flex gap-12 mt-16 pt-16 border-t border-gray-800">
               <div>
                 <p className="text-4xl font-bold text-white">5+</p>
                 <p className="text-gray-500 text-sm mt-1">Properties</p>
@@ -182,7 +175,7 @@ export default async function HomePage() {
 
           <div className="mt-8 md:hidden text-center">
             <Link href="/accommodations">
-              <Button variant="outline" className="border-gray-700 text-gray-300 hover:bg-gray-800">
+              <Button variant="outline">
                 View all properties
               </Button>
             </Link>
@@ -206,10 +199,7 @@ export default async function HomePage() {
                 Join our community of hosts across Dalmatia. List your property and connect with travelers seeking authentic Croatian experiences.
               </p>
               <Link href="/auth/signup">
-                <Button 
-                  size="lg" 
-                  className="bg-amber-500 hover:bg-amber-600 text-gray-950 font-semibold px-8"
-                >
+                <Button size="lg" variant="primary" className="px-8">
                   Start Hosting
                 </Button>
               </Link>
