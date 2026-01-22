@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { db } from '@/db';
 import { accommodations, users } from '@/db/schema';
 import { eq } from 'drizzle-orm';
@@ -10,6 +11,7 @@ import { formatCurrency } from '@/lib/utils';
 import { VACATION_TYPE_LABELS } from '@/types';
 import { ArrowLeft, MapPin, Home } from 'lucide-react';
 import type { VacationType } from '@/types';
+
 
 async function getAccommodation(id: string) {
   try {
@@ -76,10 +78,11 @@ export default async function AccommodationDetailPage({ params }: PageProps) {
           <div className="lg:col-span-2">
             <div className="relative h-64 md:h-96 bg-gray-900 rounded-2xl overflow-hidden mb-8">
               {accommodation.imageUrl ? (
-                <img
+                <Image
                   src={accommodation.imageUrl}
                   alt={accommodation.name}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
