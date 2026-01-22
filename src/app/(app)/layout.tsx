@@ -14,7 +14,7 @@ export default async function AppLayout({
 
   return (
     <div className={`${inter.className} min-h-screen flex flex-col bg-gray-950`}>
-      <HeaderWrapper siteContent={siteContent} />
+      <HeaderWrapper />
       <main className="flex-grow">{children}</main>
       <Footer appName={siteContent.appName} />
     </div>
