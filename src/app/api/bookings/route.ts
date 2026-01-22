@@ -7,7 +7,7 @@ import { calculateNights, calculateTotalPrice } from '@/lib/utils';
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
 
     if (!authUser) {
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
 
     if (!authUser) {

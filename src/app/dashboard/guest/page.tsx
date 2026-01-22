@@ -11,7 +11,7 @@ import type { VacationType } from '@/types';
 
 async function getCurrentUser() {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
     
     if (!authUser) return null;
@@ -54,8 +54,9 @@ interface SearchParams {
 export default async function GuestDashboardPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
+  const resolvedSearchParams = await searchParams;
   const user = await getCurrentUser();
 
   if (!user) {
@@ -67,7 +68,7 @@ export default async function GuestDashboardPage({
   }
 
   const { upcoming, past } = await getGuestBookings(user.id);
-  const showSuccess = searchParams.success === 'booking';
+  const showSuccess = resolvedSearchParams.success === 'booking';
 
   return (
     <div className="min-h-screen bg-gray-950 py-12">

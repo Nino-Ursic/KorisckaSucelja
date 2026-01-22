@@ -12,7 +12,7 @@ import { Plus, MapPin, Calendar, ChevronRight, Home, Inbox } from 'lucide-react'
 
 async function getCurrentUser() {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
     
     if (!authUser) return null;
@@ -78,8 +78,10 @@ interface SearchParams {
 export default async function HostDashboardPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
+
+  const resolvedSearchParams = await searchParams;
   const user = await getCurrentUser();
 
   if (!user) {
@@ -92,7 +94,7 @@ export default async function HostDashboardPage({
 
   const hostAccommodations = await getHostAccommodations(user.id);
   const { upcoming: upcomingBookings, past: pastBookings } = await getHostBookings(user.id);
-  const showSuccess = searchParams.success === 'create' || searchParams.success === 'edit';
+  const showSuccess = resolvedSearchParams.success === 'create' || resolvedSearchParams.success === 'edit';
 
   return (
     <div className="min-h-screen bg-gray-950 py-12">
@@ -112,7 +114,7 @@ export default async function HostDashboardPage({
 
         {showSuccess && (
           <div className="bg-green-500/10 border border-green-500/50 text-green-400 px-4 py-3 rounded-lg mb-8">
-            {searchParams.success === 'create' 
+            {resolvedSearchParams.success === 'create' 
               ? '✓ Your listing has been created successfully!'
               : '✓ Your listing has been updated successfully!'}
           </div>

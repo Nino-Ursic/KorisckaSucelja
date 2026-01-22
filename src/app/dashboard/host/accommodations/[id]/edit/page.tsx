@@ -10,7 +10,7 @@ import type { VacationType } from '@/types';
 
 async function getCurrentUser() {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
     
     if (!authUser) return null;
@@ -41,10 +41,13 @@ async function getAccommodation(id: string, hostId: string) {
 }
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export default async function EditAccommodationPage({ params }: PageProps) {
+  const { id } = await params;
   const user = await getCurrentUser();
 
   if (!user) {
@@ -55,7 +58,7 @@ export default async function EditAccommodationPage({ params }: PageProps) {
     redirect('/dashboard/guest');
   }
 
-  const accommodation = await getAccommodation(params.id, user.id);
+  const accommodation = await getAccommodation(id, user.id);
 
   if (!accommodation) {
     notFound();

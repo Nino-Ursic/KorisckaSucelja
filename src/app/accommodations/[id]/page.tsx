@@ -28,7 +28,7 @@ async function getAccommodation(id: string) {
 
 async function getCurrentUser() {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { data: { user: authUser } } = await supabase.auth.getUser();
     
     if (!authUser) return null;
@@ -44,11 +44,14 @@ async function getCurrentUser() {
 }
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export default async function AccommodationDetailPage({ params }: PageProps) {
-  const accommodation = await getAccommodation(params.id);
+  const { id } = await params;
+  const accommodation = await getAccommodation(id);
   const currentUser = await getCurrentUser();
 
   if (!accommodation) {
