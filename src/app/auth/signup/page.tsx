@@ -15,6 +15,7 @@ export default function SignUpPage() {
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState<UserRole>('guest');
   const [isLoading, setIsLoading] = useState(false);
+  const [comfirmPassword, setComfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,6 +24,10 @@ export default function SignUpPage() {
 
     if (password.length < 6) {
       setError('Password must be at least 6 characters');
+      return;
+    }
+    if (password != comfirmPassword){
+      setError('Passwords are not matching');
       return;
     }
 
@@ -136,6 +141,24 @@ export default function SignUpPage() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                  className="w-full bg-gray-950 border border-gray-800 rounded-lg py-3 pl-11 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
+                />
+              </div>
+            </div>
+
+             <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Comfirm password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={comfirmPassword}
+                  onChange={(e) => setComfirmPassword(e.target.value)}
                   required
                   minLength={6}
                   className="w-full bg-gray-950 border border-gray-800 rounded-lg py-3 pl-11 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors"
